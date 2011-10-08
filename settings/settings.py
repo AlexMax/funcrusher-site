@@ -21,12 +21,12 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_L10N = True
 
-STATIC_ROOT = SITE_ROOT + 'static/'
+STATIC_ROOT = SITE_ROOT + 'static_root/'
 STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    PROJECT_ROOT + 'static/'
+    PROJECT_ROOT + 'static/',
 )
 
 # List of finder classes that know how to find static files in
@@ -67,10 +67,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'registration',
 )
 
 LOGGING = {
@@ -90,5 +90,7 @@ LOGGING = {
         },
     }
 }
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 from secret import *
