@@ -18,8 +18,7 @@ class PasswordPermissionAdmin(admin.ModelAdmin):
 
     # FIXME: We should be escaping the username ourselves
     def requesting_user(self, obj):
-        url = reverse('admin:profiles_profile_change',
-                      args=(obj.user.profile.id,))
+        url = reverse('admin:auth_user_change', args=(obj.user.id,))
         return '<a href="%s">%s</a>' % (url, obj.user.username)
     requesting_user.allow_tags = True
     requesting_user.admin_order_field = 'user'
