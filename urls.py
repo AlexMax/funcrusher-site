@@ -1,10 +1,15 @@
 from django.conf.urls.defaults import patterns, include, url
-
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from profiles.forms import UserRegistrationForm
+from registration.views import register
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^accounts/register/$', register, {
+        'backend': 'registration.backends.default.DefaultBackend',
+        'form_class': UserRegistrationForm,
+    }, name='registration_register'),
     url(r'^accounts/', include('registration.backends.default.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
