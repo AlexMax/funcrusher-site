@@ -9,7 +9,8 @@
 			{{ field.label_tag }}
 			<div class="input">
 				{{ field }}
-				<span class="help-block">{% for error in field.errors %}{{ error }}{% endfor %}</span>
+				<span class="help-inline">{% for error in field.errors %}{{ error }}{% endfor %}</span>
+				<span class="help-block">{{ field.help_text }}</span>
 			</div>
 		</div>
 		{% endfor %}

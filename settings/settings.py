@@ -69,6 +69,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'registration',
+    'profiles',
+    'servers',
 )
 
 LOGGING = {
@@ -88,6 +90,8 @@ LOGGING = {
         },
     }
 }
+
+AUTH_PROFILE_MODULE = 'profiles.profile'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
