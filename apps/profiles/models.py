@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from forms import UserRegistrationForm
+from registration.signals import user_registered
 
 # Create your models here.
 class Profile(models.Model):
@@ -15,3 +17,14 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return self.user.username + "'s profile"
+
+# Signals
+def user_created(sender, user, request, **kwargs):
+    form = UserRegistrationForm(request.POST)
+    data = Profile(user=user)
+    data.aliases = form.data['aliases']
+    data.contact = form.data['contact']
+    data.location = form.data['location']
+    data.save()
+
+user_registered.connect(user_created)

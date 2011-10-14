@@ -1,0 +1,5 @@
+To activate your FUNCRUSHER+ account, please visit the following URL:
+
+http://{{ site.domain }}/accounts/activate/{{ activation_key }}/
+
+This link is valid for {{ expiration_days }} days.
