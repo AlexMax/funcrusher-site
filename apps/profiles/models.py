@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from forms import UserRegistrationForm
 from registration.signals import user_registered
 
 # Create your models here.
@@ -20,6 +19,8 @@ class Profile(models.Model):
 
 # Signals
 def user_created(sender, user, request, **kwargs):
+    from forms import UserRegistrationForm
+
     form = UserRegistrationForm(request.POST)
     data = Profile(user=user)
     data.aliases = form.data['aliases']

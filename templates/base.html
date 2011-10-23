@@ -9,11 +9,20 @@
 				<div class="page-header">
 					<img src="http://www.funcrusherplus.net/funcrusherplus.png" />
 					{% if user.is_authenticated %}
-					Welcome {{ user }}.  <a href="{% url auth_logout %}">Logout</a>
+					Welcome {{ user }}.
+					<a href="{% url profiles.views.profile %}">Profile</a>
+					<a href="{% url auth_password_change %}">Change Password</a>
+					<a href="{% url auth_logout %}">Logout</a>
 					{% else %}
 					<a href="{% url auth_login %}">Login</a>
 					{% endif %}
 				</div>
+				<ul class="pills">
+					<li><a href="#">Home</a>
+					<li><a href="#">Rules</a>
+					<li><a href="#">Private CTF</a>
+					<li><a href="#">Passwords</a>
+				</ul>
 				<div class="row">
 					<div class="span16">
 						{% block content %}{% endblock %}

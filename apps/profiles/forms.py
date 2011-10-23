@@ -1,5 +1,11 @@
 from django import forms
+from models import Profile
 from registration.forms import RegistrationForm
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('location', 'contact', 'aliases')
 
 class UserRegistrationForm(RegistrationForm):
     location = forms.CharField(help_text="A real-life location.  A US state "
