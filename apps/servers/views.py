@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from models import Server, PasswordPermission
@@ -28,3 +29,27 @@ def passwords(request):
             {'servers': servers},
             context_instance=RequestContext(request))
 
+@login_required
+def password_request(request, server_id=None):
+    s = None
+
+    # Check to see if the server id exists
+    try:
+        s = Server.objects.get(id=server_id)
+    except Server.DoesNotExist:
+        return HttpResponse(status=400)
+
+    # Check to see if the combination of server id and user exists
+    try:
+        PasswordPermission.objects.get(server=server_id, user=request.user.id)
+    except PasswordPermission.DoesNotExist:
+        # Add the combination
+        pp = PasswordPermission(server=s, user=request.user)
+        pp.save()
+
+    if request.is_ajax():
+        return HttpResponse(status=200)
+
+    return render_to_response('servers/password_request.html',
+            {'server': s},
+            context_instance=RequestContext(request))
