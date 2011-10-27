@@ -30,6 +30,8 @@ class PasswordPermission(models.Model):
             default=REQUEST_STATUS, help_text="Is the user allowed to see the "
             "server password?")
     user = models.ForeignKey(User)
+    user_modified = models.ForeignKey(User, blank=True, null=True,
+            related_name='password_permission_modified_set')
 
     class Meta:
         ordering = ['-created']

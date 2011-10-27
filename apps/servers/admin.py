@@ -11,7 +11,8 @@ admin.site.register(Server, ServerAdmin)
 
 class PasswordPermissionAdmin(admin.ModelAdmin):
     fields = ('user', 'server', 'status')
-    list_display = ('created', 'requesting_user', 'server', 'status')
+    list_display = ('created', 'requesting_user', 'server', 'status',
+                    'user_modified')
     list_editable = ('status',)
     list_filter = ('status', 'server__name')
     search_fields = ('user__username', 'server__name')
@@ -22,5 +23,11 @@ class PasswordPermissionAdmin(admin.ModelAdmin):
         return '<a href="%s">%s</a>' % (url, obj.user.username)
     requesting_user.allow_tags = True
     requesting_user.admin_order_field = 'user'
+
+    def save_model(self, request, obj, form, change):
+        # Set the user who modifies permission from the admin.
+        if obj.id:
+            obj.user_modified = request.user
+        obj.save()
 
 admin.site.register(PasswordPermission, PasswordPermissionAdmin)
