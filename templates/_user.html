@@ -1,6 +1,7 @@
 {% if user.is_authenticated %}
 <h5>Welcome, {{ user }}</h5>
 <ul>
+	{% if user.is_staff %}<li><a href="/admin">Admin</a></li>{% endif %}
 	<li><a href="{% url profiles.views.profile %}">Profile</a></li>
 	<li><a href="{% url auth_password_change %}">Change Password</a></li>
 	<li><a href="{% url auth_logout %}">Logout</a></li>

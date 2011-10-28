@@ -18,7 +18,10 @@ TIME_ZONE = 'America/New_York'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+DEFAULT_FROM_EMAIL = 'FUNCRUSHER+ <noreply@funcrusherplus.net>'
+
 SITE_ID = 1
+
 USE_L10N = True
 
 STATIC_ROOT = SITE_ROOT + 'static_root/'
