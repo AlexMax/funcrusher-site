@@ -35,3 +35,6 @@ class PasswordPermission(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+    def __unicode__(self):
+        return '{0} in {1} Permission'.format(self.user, self.server)
