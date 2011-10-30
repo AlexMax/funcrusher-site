@@ -1,4 +1,7 @@
+import logging
+
 from django.contrib.auth.models import User
+from django.contrib.auth.signals import user_logged_in
 from django.db import models
 from registration.signals import user_registered
 
@@ -18,7 +21,18 @@ class Profile(models.Model):
         return self.user.username + "'s profile"
 
 # Signals
+def user_login(sender, request, user, **kwargs):
+    # Keep track of which IP address was used to login using a
+    # specific user.
+    logger = logging.getLogger('funcrusher.user_login')
+    logger.info('{username} ({ip}) has logged in'.format(
+        username=user.username,
+        ip=request.META['REMOTE_ADDR']
+    ))
+
 def user_created(sender, user, request, **kwargs):
+    # Grab profile information from registration form and save it with
+    # the new user.
     from forms import UserRegistrationForm
 
     form = UserRegistrationForm(request.POST)
@@ -28,4 +42,5 @@ def user_created(sender, user, request, **kwargs):
     data.location = form.data['location']
     data.save()
 
+user_logged_in.connect(user_login)
 user_registered.connect(user_created)

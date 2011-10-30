@@ -81,19 +81,24 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'timestamped': {
+            'format': '[%(asctime)s] %(levelname)s "%(message)s"',
+        },
+    },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': SITE_ROOT + 'log/funcrusher.log',
+            'formatter': 'timestamped',
+        },
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
+        'funcrusher.user_login': {
+            'handlers': ['file'],
+            'level': 'INFO',
         },
-    }
+    },
 }
 
 AUTH_PROFILE_MODULE = 'profiles.profile'
