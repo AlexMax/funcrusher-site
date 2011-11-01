@@ -1,6 +1,8 @@
+{% load flatpages %}
+{% get_flatpages as flatpages %}
 <ul class="pills">
-	<li><a href="/">Home</a></li>
-	<li><a href="/rules">Rules</a></li>
-	<li><a href="/private-ctf">Private CTF</a></li>
-	<li><a href="/servers">Server Passwords</a></li>
+	{% for flatpage in flatpages|dictsort:"url" %}
+	<li><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
+	{% endfor %}
+	<li><a href="{% url servers.views.passwords %}">Server Passwords</a></li>
 </ul>
