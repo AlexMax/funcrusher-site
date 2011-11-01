@@ -89,7 +89,7 @@ LOGGING = {
     'handlers': {
         'file': {
             'class': 'logging.FileHandler',
-            'filename': SITE_ROOT + 'log/funcrusher.log',
+            'filename': SITE_ROOT + 'var/log/funcrusher.log',
             'formatter': 'timestamped',
         },
     },

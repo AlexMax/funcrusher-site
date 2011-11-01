@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse
 from models import PasswordPermission, Server
 
 class ServerAdmin(admin.ModelAdmin):
-    fields = ('name', 'address', 'password', 'info')
-    list_display = ('name', 'address', 'password')
+    fields = ('name', 'address', 'config_file', 'password', 'info')
+    list_display = ('name', 'address', 'config_file', 'password')
 
 admin.site.register(Server, ServerAdmin)
 
