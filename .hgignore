@@ -2,3 +2,4 @@ syntax:glob
 *.pyc
 *.swp
 settings/secret.py
+settings/prod.py

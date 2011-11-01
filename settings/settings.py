@@ -24,7 +24,7 @@ SITE_ID = 1
 
 USE_L10N = True
 
-STATIC_ROOT = SITE_ROOT + 'static_root/'
+STATIC_ROOT = SITE_ROOT + 'static/'
 STATIC_URL = '/static/'
 
 # Additional locations of static files
