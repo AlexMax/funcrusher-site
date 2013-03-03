@@ -1,0 +1,3 @@
+Package: gunicorn
+Pin: release a=squeeze-backports
+Pin-Priority: 999
